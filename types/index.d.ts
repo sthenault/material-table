@@ -5,7 +5,7 @@ import { string } from "prop-types";
 
 type SvgIconComponent = typeof SvgIcon;
 
-export interface MaterialTableProps<RowData extends object> {
+export interface MaterialTableProps<RowData><RowData extends object> {
   actions?: (Action<RowData> | ((rowData: RowData) => Action<RowData>))[];
   columns: Column<RowData>[];
   components?: Components;
@@ -29,7 +29,7 @@ export interface MaterialTableProps<RowData extends object> {
   icons?: Icons;
   isLoading?: boolean;
   title?: string | React.ReactElement<any>;
-  options?: Options;
+  options?: Options<RowData>;
   parentChildData?: (row: RowData, rows: RowData[]) => RowData | undefined;
   localization?: Localization;
   onChangeRowsPerPage?: (pageSize: number) => void;
@@ -273,7 +273,7 @@ export interface Icons {
   Retry?: React.ForwardRefExoticComponent<React.RefAttributes<SVGSVGElement>>;
 }
 
-export interface Options {
+export interface Options<RowData extends object> {
   actionsCellStyle?: React.CSSProperties;
   detailPanelColumnStyle?: React.CSSProperties;
   editCellStyle?: React.CSSProperties;
